@@ -52,6 +52,12 @@ class CategoryCrudController extends CrudController
                 'name'  => 'slug',
                 'label' => trans('category.slug'),
             ]
+            ,
+            [
+                'name'  => 'image',
+                'label' => "Image",
+                "type"=>"file"
+            ]
         ]);
 
         /*
@@ -123,6 +129,11 @@ class CategoryCrudController extends CrudController
                 'name'  => 'slug',
                 'label' => trans('category.slug'),
                 'type'  => 'text',
+            ],
+            [
+                'name'  => 'image',
+                'label' => "Image",
+                'type'  => 'image',
             ]
         ]);
     }

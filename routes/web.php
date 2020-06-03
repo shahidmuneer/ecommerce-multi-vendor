@@ -1,7 +1,35 @@
 <?php
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/shop', function () {
+    return view('shop');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/shopingcart', function () {
+    return view('pages.shopingcart');
+});
+Route::get('/shopdetails', function () {
+    return view('pages.shopdetails');
+});
+Route::get('/checkout', function () {
+    return view('pages.checkout');
+});
+Route::get('/blogdetails', function () {
+    return view('pages.blogdetails');
 });
 
 // Admin Interface

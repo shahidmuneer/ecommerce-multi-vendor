@@ -26,7 +26,8 @@ class CategoryRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             'name' => 'required|min:1|max:250',
-            'slug' => 'required|unique:categories,slug'
+            'slug' => 'required|unique:categories,slug',
+          
         ];
     }
 

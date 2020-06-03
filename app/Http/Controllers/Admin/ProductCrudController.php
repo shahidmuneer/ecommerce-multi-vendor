@@ -205,6 +205,15 @@ class ProductCrudController extends CrudController
                 'tab'   => trans('product.general_tab'),
             ],
             [
+                'name'          => 'images',
+                'label'         => "Images",
+                'type'          => 'browse_multiple',
+                
+                    // TAB
+                'tab'   => trans('product.general_tab'),
+            ],
+
+            [
                 'name'  => 'price_vat_calculator',
                 'type'  => 'product_vat',
                 'tab'   => trans('product.general_tab'),

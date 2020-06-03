@@ -6,11 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.5.*",
-        "backpack/base": "^0.8.0",
-        "backpack/crud": "^3.3.0",
-        "backpack/settings": "^2.0",
-        "backpack/permissionmanager": "^2.1"
+        "laravel/framework": "5.8.*",
+        "backpack/base": "^1.1.13",
+        "backpack/crud": "^4.0.0",
+        "backpack/settings": "^3.0.0",
+        "backpack/permissionmanager": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
