@@ -11,7 +11,7 @@
                     <div class="breadcrumb__text">
                         <h2>Checkout</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="/">Home</a>
                             <span>Checkout</span>
                         </div>
                     </div>
@@ -24,89 +24,99 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
                     </h6>
                 </div>
-            </div>
+            </div> --}}
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
+                <form action="/checkout" method="POST">
+                    {{csrf_field()}}
+                    @if ($errors->any())
+            <div class="alert alert-danger" style="padding:30px;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Fist Name<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="first_name" value="{{old('first_name')}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="last_name" value="{{old('last_name')}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input type="text">
+                                <input type="text" name="country" value="{{old('country')}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                                <input type="text" name="address1" value="{{old('address1')}}" placeholder="Street Address" class="checkout__input__add">
+                                <input type="text" name="address2" value="{{old('address2')}}" placeholder="Apartment, suite, unite ect (optinal)">
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
-                                <input type="text">
+                                <input type="text" name="city" value="{{old('city')}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Country/State<span>*</span></p>
-                                <input type="text">
+                                <input type="text" name="state" value="{{old('state')}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text">
+                                <input type="numeric" name="postal_code" value="{{old('postal_code')}}">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="mobile_phone" value="{{old('mobile_phone')}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <input type="email" name="email" value="{{old('email')}}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc">
+                            {{-- <div class="checkout__input__checkbox"> --}}
+                                {{-- <label for="acc">
                                     Create an account?
                                     <input type="checkbox" id="acc">
                                     <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer
-                                please login at the top of the page</p>
+                                </label> --}}
+                            {{-- </div> --}}
+                            <p>Create an account by entering the information below.</p>
                             <div class="checkout__input">
                                 <p>Account Password<span>*</span></p>
-                                <input type="text">
+                                <input type="password" name="password">
                             </div>
-                            <div class="checkout__input__checkbox">
+                            {{-- <div class="checkout__input__checkbox">
                                 <label for="diff-acc">
                                     Ship to a different address?
                                     <input type="checkbox" id="diff-acc">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
+                            </div> --}}
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
-                                <input type="text"
+                                <input type="text" name="notes"
+                                value="{{old('notes')}}"
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                         </div>
@@ -115,13 +125,13 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
                                 <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
+                                    @foreach($products as $product)
+                                    <li>{{$product->name}} <span>{{$product->price}} x {{$product->qty}}</span></li>
+                                    @endforeach
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
+                                <div class="checkout__order__subtotal">Subtotal <span>${{\ShoppingCart::totalPrice()}}</span></div>
+                                <div class="checkout__order__total">Total <span>${{\ShoppingCart::totalPrice()}}</span></div>
+                                {{-- <div class="checkout__input__checkbox">
                                     <label for="acc-or">
                                         Create an account?
                                         <input type="checkbox" id="acc-or">
@@ -129,7 +139,7 @@
                                     </label>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
+                                    ut labore et dolore magna aliqua.</p> --}}
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Check Payment

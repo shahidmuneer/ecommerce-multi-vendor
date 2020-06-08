@@ -7,20 +7,21 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -40,13 +41,19 @@
     pointer-events: none;
     color: #aaa;
 }
-
+@media screen and (max-width:600px){
+    .mobile-cart-view{
+        margin-top:-50px;
+    }
+}
 </style>
 
 
 </head>
 <body>
-<!-- Page Preloder -->
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -92,6 +99,7 @@
         </ul>
 
     </nav>
+   
     <div id="mobile-menu-wrap"></div>
     <div class="header__top__right__social">
         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -148,12 +156,12 @@
     <div class="container-fluid mb-3" style="background: #34d5eb">
     <div class="container">
         <div class="row" >
-            <div class="col-lg-3">
+            <div class="col-lg-1">
                 <div class="header__logo">
                     <h3>iBuy</h3>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <nav class="header__menu">
                     <ul>
                         <li><a href="/">Home</a></li>
@@ -174,6 +182,15 @@
                         <li><a href="/about">About</a></li>
                     </ul>
                 </nav>
+            </div>
+            <div class="col-lg-3 mobile-cart-view">
+                <div class="header__cart">
+                    <ul>
+                        {{-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
+                    <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>{{\ShoppingCart::countRows()}}</span></a></li>
+                    </ul>
+                    <div class="header__cart__price">item: <span>${{\ShoppingCart::totalPrice()}}</span></div>
+                </div>
             </div>
            
         </div>
@@ -261,14 +278,13 @@
 <!-- Footer Section End --> 
 
 <!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/mixitup.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/jquery.slicknav.js"></script>
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
 
 </body>
 </html>

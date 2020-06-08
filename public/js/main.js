@@ -218,7 +218,11 @@
                 newVal = 0;
             }
         }
+      
         $button.parent().find('input').val(newVal);
+        
+        updateTotal(newVal);
     });
+
 
 })(jQuery);

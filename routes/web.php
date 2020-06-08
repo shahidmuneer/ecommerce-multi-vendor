@@ -5,14 +5,34 @@
 // });
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', "homeController@home");
+Route::get("/category/{name}/{id}","homeController@subCategory");
+Route::get("/shop","homeController@shop");
+Route::get("/shop/{category}/{id}","homeController@shopSubCategory");
+
+Route::group(['middleware' => 'auth',
+			  'prefix'     => 'customer',
+              'namespace'  => 'customer'
+], function () {
+Route::get("/dashboard","dashboardController@customerDashboard");
+Route::get("/past-orders","dashboardController@pastOrders");
+Route::get("/logout","dashboardController@logout");
 });
-Route::get('/shop', function () {
-    return view('shop');
-});
+// Route::get();
 Route::get('/contact', function () {
     return view('contact');
+});
+
+//cart design
+Route::get("/cart","cartController@cart");
+Route::post("/add-to-cart/{id}","cartController@addToCart");
+Route::post("/remove-from-cart/{id}","cartController@removeFromCart");
+Route::post("/update-cart","cartController@updateCart");
+Route::get("/checkout","cartController@checkout");
+Route::post("/checkout","cartController@order");
+
+Route::get('/welcome2', function () {
+    return view('welcome2');
 });
 
 Route::get('/blog', function () {
@@ -25,9 +45,9 @@ Route::get('/shopingcart', function () {
 Route::get('/shopdetails', function () {
     return view('pages.shopdetails');
 });
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-});
+// Route::get('/checkout', function () {
+//     return view('pages.checkout');
+// });
 Route::get('/blogdetails', function () {
     return view('pages.blogdetails');
 });

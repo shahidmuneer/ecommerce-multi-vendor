@@ -54,6 +54,11 @@ class ProductCrudController extends CrudController
             'model'     => "App\Models\Category",
             ],
             [
+                'name'          => 'images',
+                'label'         => "Images",
+                'type'          => 'multipl'
+            ],
+            [
             'name'  => 'sku',
             'label' => trans('product.sku'),
             ],
@@ -204,14 +209,7 @@ class ProductCrudController extends CrudController
                     // TAB
                 'tab'   => trans('product.general_tab'),
             ],
-            [
-                'name'          => 'images',
-                'label'         => "Images",
-                'type'          => 'browse_multiple',
-                
-                    // TAB
-                'tab'   => trans('product.general_tab'),
-            ],
+            
 
             [
                 'name'  => 'price_vat_calculator',

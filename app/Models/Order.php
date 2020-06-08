@@ -143,7 +143,7 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Models\Product')->withPivot(['name', 'sku', 'price', 'price_with_tax',  'quantity']);
     }
-
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES
